@@ -11,4 +11,18 @@
         <maven.compiler.target>21</maven.compiler.target>
         <exec.mainClass>com.mycompany.disscordmess.Disscordmess</exec.mainClass>
     </properties>
+    <dependencies>
+    <!-- FlatLaf: giao diện phẳng, hiện đại -->
+    <dependency>
+        <groupId>com.formdev</groupId>
+        <artifactId>flatlaf</artifactId>
+        <version>3.6.1</version>
+    </dependency>
+        <dependency>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>RELEASE220</version>
+        </dependency>
+    </dependencies>
+
 </project>
