@@ -36,231 +36,87 @@ public class client extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        disconnect = new javax.swing.JButton();
-        connectsever = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        hienthinoinoidung = new javax.swing.JTextArea();
-        disconnectsever = new javax.swing.JButton();
         noidung = new javax.swing.JLabel();
-        nhapidsever = new javax.swing.JTextField();
+        connectsever = new javax.swing.JButton();
+        tinnhan1 = new javax.swing.JLabel();
+        id = new javax.swing.JLabel();
         tinnhan = new javax.swing.JLabel();
+        send = new javax.swing.JButton();
         nhapport = new javax.swing.JTextField();
         nhaptinnhan = new javax.swing.JTextField();
-        id = new javax.swing.JLabel();
-        send = new javax.swing.JButton();
         port = new javax.swing.JLabel();
+        disconnectsever = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        hienthinoinoidung = new javax.swing.JTextArea();
+        disconnect = new javax.swing.JButton();
+        nhapidsever = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        disconnect.setText("Thoát");
-        disconnect.addActionListener(new java.awt.event.ActionListener() {
+        noidung.setFont(new java.awt.Font("Apple SD Gothic Neo", 1, 18)); // NOI18N
+        noidung.setForeground(new java.awt.Color(255, 255, 255));
+        noidung.setText("Nội Dung ");
+        getContentPane().add(noidung, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, -1));
+
+        connectsever.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-off-24-2.png"))); // NOI18N
+        getContentPane().add(connectsever, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 290, 30, 20));
+
+        tinnhan1.setFont(new java.awt.Font("Apple SD Gothic Neo", 1, 18)); // NOI18N
+        tinnhan1.setForeground(new java.awt.Color(255, 255, 255));
+        tinnhan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-talk-48.png"))); // NOI18N
+        tinnhan1.setText("Disscord mess");
+        getContentPane().add(tinnhan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 260, 50));
+
+        id.setFont(new java.awt.Font("Apple SD Gothic Neo", 1, 18)); // NOI18N
+        id.setForeground(new java.awt.Color(255, 255, 255));
+        id.setText("ID");
+        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, -1, -1));
+
+        tinnhan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-customer-30.png"))); // NOI18N
+        getContentPane().add(tinnhan, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, -1, -1));
+
+        send.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-arrow-50.png"))); // NOI18N
+        getContentPane().add(send, new org.netbeans.lib.awtextra.AbsoluteConstraints(636, 330, 50, 40));
+        getContentPane().add(nhapport, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, 200, -1));
+
+        nhaptinnhan.setText("Nhập Tin Nhắn");
+        nhaptinnhan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                disconnectActionPerformed(evt);
+                nhaptinnhanActionPerformed(evt);
             }
         });
+        getContentPane().add(nhaptinnhan, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 450, 80));
 
-        connectsever.setText("Kết Nối sever");
-        connectsever.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                connectseverActionPerformed(evt);
-            }
-        });
+        port.setFont(new java.awt.Font("Apple SD Gothic Neo", 1, 18)); // NOI18N
+        port.setForeground(new java.awt.Color(255, 255, 255));
+        port.setText("Port");
+        getContentPane().add(port, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, -1, -1));
+
+        disconnectsever.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-off-32.png"))); // NOI18N
+        getContentPane().add(disconnectsever, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 290, 30, 20));
 
         hienthinoinoidung.setColumns(20);
         hienthinoinoidung.setRows(5);
-        hienthinoinoidung.setText("Hiển thị tin nhắn trao đổi\n");
+        hienthinoinoidung.setText("\n");
         jScrollPane1.setViewportView(hienthinoinoidung);
 
-        disconnectsever.setText("Thoát");
-        disconnectsever.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                disconnectseverActionPerformed(evt);
-            }
-        });
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 630, 190));
 
-        noidung.setText("Nội Dung ");
+        disconnect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-no-50.png"))); // NOI18N
+        getContentPane().add(disconnect, new org.netbeans.lib.awtextra.AbsoluteConstraints(696, 0, 40, 30));
+        getContentPane().add(nhapidsever, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 180, -1));
 
-        nhapidsever.setText("Nhập id sever");
-        nhapidsever.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nhapidseverActionPerformed(evt);
-            }
-        });
-
-        tinnhan.setText("Nhập tin nhắn ");
-
-        nhapport.setText("Nhập port");
-        nhapport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nhapportActionPerformed(evt);
-            }
-        });
-
-        nhaptinnhan.setText("Nhập Tin Nhắn cần Gửi");
-
-        id.setText("Nhập id");
-
-        send.setText("Gửi ");
-        send.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sendActionPerformed(evt);
-            }
-        });
-
-        port.setText("nNhập port");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(connectsever)
-                        .addGap(153, 153, 153)
-                        .addComponent(disconnectsever))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(noidung)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(id)
-                                    .addComponent(port))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(nhapport)
-                                    .addComponent(nhapidsever, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(tinnhan)
-                        .addGap(70, 70, 70)
-                        .addComponent(nhaptinnhan, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(send)
-                        .addGap(215, 215, 215)
-                        .addComponent(disconnect)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(nhapidsever, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)
-                        .addComponent(nhapport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(id)
-                        .addGap(18, 18, 18)
-                        .addComponent(port)))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(connectsever)
-                    .addComponent(disconnectsever))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(noidung)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tinnhan)
-                    .addComponent(nhaptinnhan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(send)
-                    .addComponent(disconnect))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 732, 592));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void disconnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_disconnectActionPerformed
- try {
-        if (socket != null && !socket.isClosed()) {
-            socket.close();
-        }
-    } catch (IOException ex) {
-        // có thể log nếu muốn
-    }
-    
-    // Đóng cửa sổ hiện tại
-    this.dispose();
-    
- 
-    
-    }//GEN-LAST:event_disconnectActionPerformed
-
-    private void connectseverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectseverActionPerformed
- try {
-        String host = nhapidsever.getText().trim();
-        int port = Integer.parseInt(nhapport.getText().trim());
-
-        socket = new Socket(host, port);
-        hienthinoinoidung.append("✅ Đã kết nối tới server " + host + ":" + port + "\n");
-
-        reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        writer = new PrintWriter(socket.getOutputStream(), true);
-
-        // Thread nhận tin nhắn từ server
-        clientThread = new Thread(() -> {
-            try {
-                String msg;
-                while ((msg = reader.readLine()) != null) {
-                    hienthinoinoidung.append("📩 Server: " + msg + "\n");
-                }
-            } catch (IOException ex) {
-                hienthinoinoidung.append("⚠ Lỗi khi đọc dữ liệu: " + ex.getMessage() + "\n");
-            }
-        });
-        clientThread.start();
-
-    } catch (Exception ex) {
-        JOptionPane.showMessageDialog(this, "❌ Không thể kết nối: " + ex.getMessage());
-    }
- 
-    }//GEN-LAST:event_connectseverActionPerformed
-
-    private void disconnectseverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_disconnectseverActionPerformed
-         try {
-        if (socket != null && !socket.isClosed()) {
-            socket.close();
-            hienthinoinoidung.append("🛑 Đã ngắt kết nối server.\n");
-        }
-    } catch (IOException ex) {
-        hienthinoinoidung.append("⚠ Lỗi ngắt kết nối: " + ex.getMessage() + "\n");
-    }
-         
-    }//GEN-LAST:event_disconnectseverActionPerformed
-
-    private void nhapidseverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nhapidseverActionPerformed
+    private void nhaptinnhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nhaptinnhanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nhapidseverActionPerformed
-
-    private void nhapportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nhapportActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nhapportActionPerformed
-
-    private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
-       try {
-        String msg = nhaptinnhan.getText().trim();
-        if (writer != null && !msg.isEmpty()) {
-            writer.println(msg);
-            hienthinoinoidung.append("👤 Bạn: " + msg + "\n");
-            nhaptinnhan.setText(""); // xoá sau khi gửi
-        }
-    } catch (Exception ex) {
-        hienthinoinoidung.append("⚠ Lỗi gửi tin: " + ex.getMessage() + "\n");
-    }
-       
-    }//GEN-LAST:event_sendActionPerformed
+    }//GEN-LAST:event_nhaptinnhanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,6 +154,7 @@ private Thread clientThread;
     private javax.swing.JButton disconnectsever;
     private javax.swing.JTextArea hienthinoinoidung;
     private javax.swing.JLabel id;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nhapidsever;
     private javax.swing.JTextField nhapport;
@@ -306,5 +163,6 @@ private Thread clientThread;
     private javax.swing.JLabel port;
     private javax.swing.JButton send;
     private javax.swing.JLabel tinnhan;
+    private javax.swing.JLabel tinnhan1;
     // End of variables declaration//GEN-END:variables
 }
