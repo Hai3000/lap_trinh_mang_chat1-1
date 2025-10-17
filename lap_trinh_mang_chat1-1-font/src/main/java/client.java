@@ -56,6 +56,9 @@ private Thread clientThread;
         disconnect = new javax.swing.JButton();
         nhapidsever = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        send1 = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -104,7 +107,7 @@ private Thread clientThread;
                 nhaptinnhanActionPerformed(evt);
             }
         });
-        getContentPane().add(nhaptinnhan, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 450, 80));
+        getContentPane().add(nhaptinnhan, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 450, 70));
 
         port.setFont(new java.awt.Font("Apple SD Gothic Neo", 1, 18)); // NOI18N
         port.setForeground(new java.awt.Color(255, 255, 255));
@@ -125,7 +128,7 @@ private Thread clientThread;
         hienthinoinoidung.setText("\n");
         jScrollPane1.setViewportView(hienthinoinoidung);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 630, 190));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 590, 190));
 
         disconnect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-no-50.png"))); // NOI18N
         disconnect.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +140,28 @@ private Thread clientThread;
         getContentPane().add(nhapidsever, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 180, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 732, 592));
+        jLabel1.setVerifyInputWhenFocusTarget(false);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 430));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 430));
+
+        send1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-arrow-50.png"))); // NOI18N
+        send1.setText("Send");
+        send1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                send1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(send1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 360, 110, 40));
+
+        btnClear.setText("Xóa tin nhắn");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 460, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -223,6 +247,35 @@ clientThread.start();
            this.dispose();
     }//GEN-LAST:event_disconnectActionPerformed
 
+    private void send1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_send1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_send1ActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+       // Nếu người dùng bôi đen một đoạn tin nhắn → xóa đoạn đó
+    int start = hienthinoinoidung.getSelectionStart();
+    int end = hienthinoinoidung.getSelectionEnd();
+    
+    if (start != end) {
+        // Xóa phần được bôi đen
+        hienthinoinoidung.replaceRange("", start, end);
+    } else {
+        // Nếu không bôi đen, xóa cả dòng nơi con trỏ đang đứng
+        try {
+            int caretPos = hienthinoinoidung.getCaretPosition(); // vị trí con trỏ
+            int startLine = hienthinoinoidung.getLineStartOffset(
+                hienthinoinoidung.getLineOfOffset(caretPos)
+            );
+            int endLine = hienthinoinoidung.getLineEndOffset(
+                hienthinoinoidung.getLineOfOffset(caretPos)
+            );
+            hienthinoinoidung.replaceRange("", startLine, endLine);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    }//GEN-LAST:event_btnClearActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -249,12 +302,14 @@ clientThread.start();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClear;
     private javax.swing.JButton connectsever;
     private javax.swing.JButton disconnect;
     private javax.swing.JButton disconnectsever;
     private javax.swing.JTextArea hienthinoinoidung;
     private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nhapidsever;
     private javax.swing.JTextField nhapport;
@@ -262,6 +317,7 @@ clientThread.start();
     private javax.swing.JLabel noidung;
     private javax.swing.JLabel port;
     private javax.swing.JButton send;
+    private javax.swing.JButton send1;
     private javax.swing.JLabel tinnhan;
     private javax.swing.JLabel tinnhan1;
     // End of variables declaration//GEN-END:variables

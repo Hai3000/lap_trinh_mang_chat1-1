@@ -38,6 +38,7 @@ public class mainform extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         Opensever = new javax.swing.JMenuItem();
@@ -46,6 +47,8 @@ public class mainform extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.png"))); // NOI18N
+
+        jLabel2.setText("jLabel2");
 
         jMenu2.setForeground(new java.awt.Color(255, 255, 255));
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-who-24.png"))); // NOI18N
@@ -134,6 +137,7 @@ public class mainform extends javax.swing.JFrame {
     private javax.swing.JMenuItem Opencilent;
     private javax.swing.JMenuItem Opensever;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
