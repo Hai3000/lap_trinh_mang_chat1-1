@@ -7,12 +7,12 @@
  *
  * @author vominhduc
  */
-public class DangNhapfrm extends javax.swing.JFrame {
+public class login extends javax.swing.JFrame {
 
     /**
-     * Creates new form DangNhapfrm
+     * Creates new form login
      */
-    public DangNhapfrm() {
+    public login() {
         initComponents();
     }
 
@@ -74,7 +74,7 @@ public class DangNhapfrm extends javax.swing.JFrame {
         getContentPane().add(lblthongbao, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, -1, -1));
 
         lblbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.png"))); // NOI18N
-        getContentPane().add(lblbackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 280));
+        getContentPane().add(lblbackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 440, 310));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -100,20 +100,20 @@ public class DangNhapfrm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DangNhapfrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DangNhapfrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DangNhapfrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DangNhapfrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DangNhapfrm().setVisible(true);
+                new login().setVisible(true);
             }
         });
     }
