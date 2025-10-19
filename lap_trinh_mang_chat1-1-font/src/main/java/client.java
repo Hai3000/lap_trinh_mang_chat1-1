@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import javax.swing.JOptionPane;
 import javax.swing.*;
+import java.io.File;
+import java.io.FileReader;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -21,15 +23,19 @@ private Socket socket;
 private BufferedReader reader;
 private PrintWriter writer;
 private Thread clientThread;
+private String username;
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(client.class.getName());
 
     /**
      * Creates new form client
      */
-    public client() {
+    public client(String user) {
         initComponents();
+        this.username = user; // lưu tên người đăng nhập
+    setTitle("Client - " + username);
         hienthinoinoidung.setEditable(false);
+            docLichSuTuFile();
     }
 
     /**
@@ -174,6 +180,24 @@ private Thread clientThread;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+private void docLichSuTuFile() {
+    File file = new File("server_log.txt");
+    if (!file.exists()) {
+        hienthinoinoidung.append("💾 Chưa có lịch sử tin nhắn.\n");
+        return;
+    }
+
+    try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+        String line;
+        hienthinoinoidung.append("💾 --- Lịch sử tin nhắn ---\n");
+        while ((line = br.readLine()) != null) {
+            hienthinoinoidung.append(line + "\n");
+        }
+        hienthinoinoidung.append("💾 --- Kết thúc lịch sử ---\n\n");
+    } catch (IOException e) {
+        hienthinoinoidung.append("⚠️ Lỗi khi đọc lịch sử: " + e.getMessage() + "\n");
+    }
+}
 
     private void nhaptinnhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nhaptinnhanActionPerformed
         // TODO add your handling code here:
@@ -239,16 +263,22 @@ clientThread.start();
 
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
         // TODO add your handling code here:
-         if (writer == null) {
-        JOptionPane.showMessageDialog(this, "Chưa kết nối server!", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
-    String msg = nhaptinnhan.getText().trim();
-    if (!msg.isEmpty()) {
-        writer.println(msg);
-        hienthinoinoidung.append("🧑‍💻 Tôi: " + msg + "\n");
-        nhaptinnhan.setText("");
-    }
+if (writer == null) {
+    JOptionPane.showMessageDialog(this, "Chưa kết nối server!", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
+    return;
+}
+
+String msg = nhaptinnhan.getText().trim();
+if (!msg.isEmpty()) {
+    // Gửi kèm username tới server
+    writer.println(username + ": " + msg);
+
+    // Hiển thị trên màn hình chat
+    hienthinoinoidung.append("🧑‍💻 " + username + ": " + msg + "\n");
+    nhaptinnhan.setText("");
+    ghiLogVaoFile("🧑‍💻 " + username + ": " + msg);
+}
+
     }//GEN-LAST:event_sendActionPerformed
 
     private void disconnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_disconnectActionPerformed
@@ -326,26 +356,19 @@ clientThread.start();
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new client().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> {
+        new client("TestUser").setVisible(true);  // truyền username mẫu
+    });
     }
+    
+    private void ghiLogVaoFile(String log) {
+    try (PrintWriter pw = new PrintWriter(new java.io.FileWriter("server_log.txt", true))) {
+        pw.println(log);
+    } catch (IOException e) {
+        System.err.println("Không thể ghi log: " + e.getMessage());
+    }
+}
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClear;

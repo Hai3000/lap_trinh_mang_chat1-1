@@ -11,25 +11,33 @@ import java.awt.*;
  */
 public class mainform extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(mainform.class.getName());
+  private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(mainform.class.getName());
+    private String username; // Lưu tên người dùng
 
-    /**
-     * Creates new form mainform
-     */
+    // Constructor mặc định (NetBeans sẽ dùng khi chạy riêng form)
     public mainform() {
         initComponents();
-         // Load ảnh logo
-    ImageIcon logo = new ImageIcon(getClass().getResource("/image/logo.png"));
-    JLabel lblLogo = new JLabel(logo);
-    
-    // Đặt vị trí và kích thước ảnh
-    lblLogo.setBounds(20, 20, logo.getIconWidth(), logo.getIconHeight());
-    
-    // Thêm ảnh vào form (giả sử bạn có JPanel tên là jPanel1)
-
-
+        setLocationRelativeTo(null);
     }
 
+    // Constructor có tham số username (gọi từ form đăng nhập)
+    public mainform(String user) {
+        initComponents();
+        setLocationRelativeTo(null);
+        
+        this.username = user; // Lưu lại username
+        
+        // Hiển thị tên người dùng
+        lblWelcome.setText("Xin chào, " + username + "!");
+        
+        // Load ảnh logo (nếu có)
+        ImageIcon logo = new ImageIcon(getClass().getResource("/image/logo.png"));
+        JLabel lblLogo = new JLabel(logo);
+        lblLogo.setBounds(20, 20, logo.getIconWidth(), logo.getIconHeight());
+        
+        // Nếu bạn có jPanel1 thì thêm ảnh vào panel
+        // jPanel1.add(lblLogo);
+    }
     
     
     
@@ -38,6 +46,7 @@ public class mainform extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        lblWelcome = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
@@ -47,6 +56,8 @@ public class mainform extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.png"))); // NOI18N
+
+        lblWelcome.setText("jLabel3");
 
         jLabel2.setText("jLabel2");
 
@@ -83,22 +94,30 @@ public class mainform extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 634, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 182, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblWelcome)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void OpencilentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpencilentActionPerformed
-        client cl = new client();   // Tạo đối tượng form client
-        cl.setVisible(true);        // Hiện form client
-        cl.setLocationRelativeTo(null);
+          client cl = new client(username); // truyền tên người đăng nhập qua
+    cl.setVisible(true);
+    cl.setLocationRelativeTo(null);
     }//GEN-LAST:event_OpencilentActionPerformed
 
     private void OpenseverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenseverActionPerformed
@@ -140,5 +159,6 @@ public class mainform extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel lblWelcome;
     // End of variables declaration//GEN-END:variables
 }

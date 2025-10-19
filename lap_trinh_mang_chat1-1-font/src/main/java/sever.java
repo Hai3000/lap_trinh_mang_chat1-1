@@ -7,6 +7,11 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import javax.swing.JOptionPane;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -29,7 +34,12 @@ public class sever extends javax.swing.JFrame {
      */
     public sever() {
         initComponents();
+        setLocationRelativeTo(null);
+
+    docLogTuFile(); // 🔹 Khi mở lại server, hiển thị lại toàn bộ log cũ
+    
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -107,6 +117,29 @@ public class sever extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+private void ghiLogVaoFile(String noiDung) {
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter("server_log.txt", true))) {
+        bw.write(noiDung);
+        bw.newLine();
+    } catch (IOException e) {
+        System.err.println("Không thể ghi log: " + e.getMessage());
+    }
+}
+
+// Đọc toàn bộ file log.txt và hiển thị vào hienthilog
+private void docLogTuFile() {
+    File file = new File("server_log.txt");
+    if (!file.exists()) return; // Nếu chưa có log thì bỏ qua
+
+    try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+        String line;
+        while ((line = br.readLine()) != null) {
+            hienthilog.append(line + "\n");
+        }
+    } catch (IOException e) {
+        System.err.println("Lỗi khi đọc log: " + e.getMessage());
+    }
+}
 
     private void startseverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startseverActionPerformed
         // TODO add your handling code here:
@@ -114,6 +147,7 @@ public class sever extends javax.swing.JFrame {
         int port = Integer.parseInt(nhapport.getText().trim());
         serverSocket = new ServerSocket(port);
         hienthilog.append("✅ Server đã bật, lắng nghe cổng: " + port + "\n");
+        ghiLogVaoFile("✅ Server đã bật, lắng nghe cổng: " + port);
 
         // Chạy server trong thread riêng
         serverThread = new Thread(() -> {
@@ -205,6 +239,18 @@ private Thread serverThread;
     private PrintWriter writer;
      private Object hienthinlog;
 
+     
+     private void ghiTinNhanVaoFile(String msg) {
+    try (FileWriter fw = new FileWriter("server_log.txt", true);
+         BufferedWriter bw = new BufferedWriter(fw);
+         PrintWriter out = new PrintWriter(bw)) {
+        out.println(msg);
+    } catch (IOException e) {
+        hienthilog.append("⚠ Lỗi khi ghi tin nhắn vào file: " + e.getMessage() + "\n");
+    }
+}
+
+     
     public clientHandler(Socket socket) throws IOException {
         this.socket = socket;
         reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -217,7 +263,8 @@ public void run() {
     try {
         String msg;
         while ((msg = reader.readLine()) != null) {
-
+            
+              ghiTinNhanVaoFile(msg); // ✅ Ghi tin nhắn chat vào file
             // 🔹 Gửi tin cho tất cả client KHÁC (bỏ qua người gửi)
             synchronized (sever.clientWriters) {
                 for (PrintWriter w : sever.clientWriters) {
