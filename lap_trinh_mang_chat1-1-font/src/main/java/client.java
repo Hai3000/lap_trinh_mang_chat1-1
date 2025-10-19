@@ -54,11 +54,12 @@ private Thread clientThread;
         jScrollPane1 = new javax.swing.JScrollPane();
         hienthinoinoidung = new javax.swing.JTextArea();
         disconnect = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
         nhapidsever = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         send1 = new javax.swing.JButton();
-        btnClear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -98,7 +99,7 @@ private Thread clientThread;
                 sendActionPerformed(evt);
             }
         });
-        getContentPane().add(send, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 360, 110, 40));
+        getContentPane().add(send, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 360, 110, 40));
         getContentPane().add(nhapport, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, 200, -1));
 
         nhaptinnhan.setText("Nhập Tin Nhắn");
@@ -107,7 +108,7 @@ private Thread clientThread;
                 nhaptinnhanActionPerformed(evt);
             }
         });
-        getContentPane().add(nhaptinnhan, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 450, 70));
+        getContentPane().add(nhaptinnhan, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 450, 70));
 
         port.setFont(new java.awt.Font("Apple SD Gothic Neo", 1, 18)); // NOI18N
         port.setForeground(new java.awt.Color(255, 255, 255));
@@ -128,7 +129,7 @@ private Thread clientThread;
         hienthinoinoidung.setText("\n");
         jScrollPane1.setViewportView(hienthinoinoidung);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 590, 190));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 640, 190));
 
         disconnect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-no-50.png"))); // NOI18N
         disconnect.addActionListener(new java.awt.event.ActionListener() {
@@ -137,11 +138,27 @@ private Thread clientThread;
             }
         });
         getContentPane().add(disconnect, new org.netbeans.lib.awtextra.AbsoluteConstraints(696, 0, 40, 30));
+
+        btnClear.setText("Xóa tin nhắn");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 420, 100, -1));
+
+        btnEdit.setText("sửa tin nhắn");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 420, 100, -1));
         getContentPane().add(nhapidsever, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 180, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.png"))); // NOI18N
         jLabel1.setVerifyInputWhenFocusTarget(false);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 430));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 470));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 430));
@@ -154,14 +171,6 @@ private Thread clientThread;
             }
         });
         getContentPane().add(send1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 360, 110, 40));
-
-        btnClear.setText("Xóa tin nhắn");
-        btnClear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClearActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 460, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -276,6 +285,43 @@ clientThread.start();
     }
     }//GEN-LAST:event_btnClearActionPerformed
 
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+ try {
+        String selectedText = hienthinoinoidung.getSelectedText();
+
+        if (selectedText == null || selectedText.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng tô (bôi đen) dòng muốn sửa trước!");
+            return;
+        }
+
+        // Hiển thị hộp thoại nhập nội dung mới
+        String newText = JOptionPane.showInputDialog(this, "Nhập nội dung mới:", selectedText);
+        if (newText == null || newText.trim().isEmpty()) {
+            return; // Người dùng bấm Cancel hoặc để trống
+        }
+
+        // Lấy toàn bộ nội dung hiện tại
+        String fullText = hienthinoinoidung.getText();
+
+        // Thay thế phần được chọn bằng nội dung mới
+        int start = hienthinoinoidung.getSelectionStart();
+        int end = hienthinoinoidung.getSelectionEnd();
+
+        String updatedText = fullText.substring(0, start)
+                + newText
+                + fullText.substring(end);
+
+        // Cập nhật lại JTextArea
+        hienthinoinoidung.setText(updatedText);
+
+        JOptionPane.showMessageDialog(this, "Đã sửa tin nhắn thành công!");
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Lỗi khi sửa tin nhắn: " + e.getMessage());
+    }
+    }//GEN-LAST:event_btnEditActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -303,6 +349,7 @@ clientThread.start();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnEdit;
     private javax.swing.JButton connectsever;
     private javax.swing.JButton disconnect;
     private javax.swing.JButton disconnectsever;
